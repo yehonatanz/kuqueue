@@ -10,3 +10,6 @@ test:
 format:
 	poetry run black .
 	poetry run isort .
+
+watch:
+	poetry run ptw . -- -vvv
