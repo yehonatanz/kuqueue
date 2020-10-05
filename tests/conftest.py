@@ -23,13 +23,13 @@ def qname() -> str:
 
 
 @pytest.fixture
-def job_timeout() -> int:
-    return 1
+def job_timeout() -> float:
+    return 0.2
 
 
 @pytest.fixture
 def kq(
-    redis_client: StrictRedis, namespace: str, qname: str, job_timeout: int
+    redis_client: StrictRedis, namespace: str, qname: str, job_timeout: float
 ) -> Kuqueue:
     kq = Kuqueue(
         create_rsmq(
