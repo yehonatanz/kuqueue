@@ -4,3 +4,6 @@
 .pytest_cache/
 __pycache__/
 *.egg-info/
+.coverage
+htmlcov/
+junit.xml
