@@ -1,1 +1,1 @@
-from .kuqueue import Kuqueue, create_rsmq
+from .kuqueue import Kuqueue, QueueAlreadyExists, create_rsmq

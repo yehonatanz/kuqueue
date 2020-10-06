@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import time
 
-from kuqueue import Kuqueue
+import pytest
+
+from kuqueue import Kuqueue, QueueAlreadyExists
 
 
 def test_one_push_one_pull(kq: Kuqueue) -> None:
@@ -45,3 +47,12 @@ def test_cannot_pull_acked_message_even_if_timeout_has_passed(
     assert kq.ack(id) is True
     time.sleep(job_timeout * 1.05)
     assert kq.pull(0.2) is None
+
+
+def test_create_queue_fails_if_queue_exists(kq: Kuqueue) -> None:
+    with pytest.raises(QueueAlreadyExists):
+        kq.create(exists_ok=False)
+
+
+def test_create_queue_succeeds_if_queue_exists(kq: Kuqueue) -> None:
+    assert kq.create() is False
