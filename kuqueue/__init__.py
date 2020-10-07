@@ -1,1 +1,1 @@
-from .kuqueue import Kuqueue, QueueAlreadyExists, create_kuqueue
+from .kuqueue import Kuqueue, Message, QueueAlreadyExists, create_kuqueue
