@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kuqueue"
-version = "0.1.1"
+version = "0.1.2"
 description = "An easy pythonic redis-based MQ"
 authors = ["Yehonatan Zecharia <yonti95@gmail.com>"]
 license = "MIT"
