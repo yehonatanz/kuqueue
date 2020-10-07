@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-pyrsmq = "^0.4.2"
+pyrsmq = "^0.4.3"
 redis = "^3.5.3"
 
 [tool.poetry.dev-dependencies]
