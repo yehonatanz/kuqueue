@@ -20,6 +20,12 @@ def create_rsmq(
     return RedisSMQ(client=client, ns=namespace, qname=qname, vt=default_job_timeout)
 
 
+def create_kuqueue(
+    client: StrictRedis, namespace: str, qname: str, default_job_timeout: Number
+) -> Kuqueue:
+    return Kuqueue(create_rsmq(client, namespace, qname, default_job_timeout))
+
+
 @dataclass(frozen=True)
 class Message:
     id: MessageId

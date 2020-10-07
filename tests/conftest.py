@@ -1,7 +1,7 @@
 import pytest
 from redis import StrictRedis
 
-from kuqueue import Kuqueue, create_rsmq
+from kuqueue import Kuqueue, create_kuqueue
 
 
 @pytest.fixture
@@ -31,13 +31,11 @@ def job_timeout() -> float:
 def kq(
     redis_client: StrictRedis, namespace: str, qname: str, job_timeout: float
 ) -> Kuqueue:
-    kq = Kuqueue(
-        create_rsmq(
-            redis_client,
-            namespace=namespace,
-            qname=qname,
-            default_job_timeout=job_timeout,
-        )
+    kq = create_kuqueue(
+        redis_client,
+        namespace=namespace,
+        qname=qname,
+        default_job_timeout=job_timeout,
     )
     kq.create()
     return kq
