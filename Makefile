@@ -16,3 +16,9 @@ format:
 
 watch:
 	poetry run ptw . -- -vvv $(COV_OPTIONS) --cov-report html
+
+install:
+	poetry install
+
+build:
+	poetry build
