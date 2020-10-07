@@ -8,7 +8,7 @@ lint:
 	poetry run mypy $(SRC)
 
 test:
-	poetry run pytest $(COV_OPTIONS) --cov-report xml:junit.xml
+	poetry run pytest $(COV_OPTIONS)
 
 format:
 	poetry run black .
