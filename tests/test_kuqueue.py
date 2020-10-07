@@ -3,6 +3,7 @@ from __future__ import annotations
 import time
 
 import pytest
+from redis import StrictRedis
 
 from kuqueue import Kuqueue, QueueAlreadyExists
 
@@ -56,3 +57,10 @@ def test_create_queue_fails_if_queue_exists(kq: Kuqueue) -> None:
 
 def test_create_queue_succeeds_if_queue_exists(kq: Kuqueue) -> None:
     assert kq.create() is False
+
+
+def test_delete_queue(kq: Kuqueue, redis_client: StrictRedis):
+    assert kq.delete() is True
+    assert redis_client.keys() == []
+    assert kq.delete() is False
+    assert redis_client.keys() == []

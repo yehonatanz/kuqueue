@@ -7,7 +7,7 @@ from typing import Optional, Union, cast, overload
 
 from redis import StrictRedis
 from rsmq import RedisSMQ
-from rsmq.cmd import NoMessageInQueue, QueueAlreadyExists
+from rsmq.cmd import NoMessageInQueue, QueueAlreadyExists, QueueDoesNotExist
 
 MessageData = bytes
 MessageId = bytes
@@ -112,5 +112,17 @@ class Kuqueue:
                 return False
             else:
                 raise
+        else:
+            return True
+
+    def delete(self) -> bool:
+        """
+        Deletes the queue and all its messages.
+        Return whether the queue existed and got deleted
+        """
+        try:
+            self.rsmq.deleteQueue().execute()
+        except QueueDoesNotExist:
+            return False
         else:
             return True
